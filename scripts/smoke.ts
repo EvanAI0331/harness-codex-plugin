@@ -37,6 +37,7 @@ async function main(): Promise<void> {
         SPECX_MODE: "mock",
       },
       stdio: ["ignore", "pipe", "pipe"],
+      detached: process.platform !== "win32",
     },
   );
 
@@ -129,8 +130,7 @@ async function main(): Promise<void> {
     }
     process.exitCode = 1;
   } finally {
-    server.kill("SIGTERM");
-    await onceExit(server);
+    await stopServer(server);
   }
 }
 
@@ -260,6 +260,33 @@ async function onceExit(child: ReturnType<typeof spawn>): Promise<void> {
     }
     child.once("exit", () => resolve());
   });
+}
+
+async function stopServer(child: ReturnType<typeof spawn>): Promise<void> {
+  signalServer(child, "SIGTERM");
+  await Promise.race([onceExit(child), sleep(5000)]);
+  if (child.exitCode === null) {
+    signalServer(child, "SIGKILL");
+    await Promise.race([onceExit(child), sleep(5000)]);
+  }
+}
+
+function signalServer(child: ReturnType<typeof spawn>, signal: NodeJS.Signals): void {
+  if (child.exitCode !== null) {
+    return;
+  }
+  try {
+    if (process.platform !== "win32" && child.pid) {
+      process.kill(-child.pid, signal);
+      return;
+    }
+    child.kill(signal);
+  } catch (error) {
+    const code = typeof error === "object" && error && "code" in error ? (error as { code?: unknown }).code : undefined;
+    if (code !== "ESRCH") {
+      throw error;
+    }
+  }
 }
 
 function sleep(ms: number): Promise<void> {

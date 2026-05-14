@@ -6,7 +6,7 @@ Harness is currently distributed through a GitHub-backed Codex marketplace.
 Standard install command:
 
 ```bash
-codex plugin marketplace add https://github.com/BTCNAI/harness-codex-marketplace.git --ref v0.1.0
+codex plugin marketplace add https://github.com/BTCNAI/harness-codex-marketplace.git --ref v0.1.1
 ```
 
 Repo marketplace layout:

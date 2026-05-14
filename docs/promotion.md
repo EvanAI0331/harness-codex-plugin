@@ -35,7 +35,7 @@ Codex is powerful, but complex agent work needs more than prompts. Harness turns
 It is distributed today through a GitHub-backed Codex marketplace:
 
 ```bash
-codex plugin marketplace add https://github.com/BTCNAI/harness-codex-marketplace.git --ref v0.1.0
+codex plugin marketplace add https://github.com/BTCNAI/harness-codex-marketplace.git --ref v0.1.1
 ```
 
 ## Channels

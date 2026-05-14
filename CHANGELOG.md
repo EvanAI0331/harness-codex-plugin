@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0
+## 0.1.1
 
 - Packaged Harness as a Codex plugin.
 - Added plugin manifest, repo marketplace metadata, and MCP registration.
@@ -9,3 +9,4 @@
 - Added MCP tools aligned with CLI behavior.
 - Strengthened execution specs with explicit LLM decision and capability stages.
 - Added use-case, promotion, and release documentation for GitHub distribution.
+- Hardened smoke test server shutdown for GitHub Actions.
