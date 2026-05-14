@@ -107,8 +107,7 @@ async function main(): Promise<void> {
     const runId = String(run.run.id);
     console.log(`[smoke] run API ok -> ${runId}`);
 
-    const runPage = await fetch(`${BASE_URL}/runs/${runId}`);
-    assert(runPage.ok, `/runs/${runId} page exists`);
+    await waitForRunPage(runId);
 
     const output = await waitForFinalOutput(runId);
     assert(output.status === "completed" || output.run?.status === "completed", "output API reports completed run");
@@ -165,6 +164,24 @@ async function waitForFinalOutput(runId: string, timeoutMs = 120000): Promise<Ru
     await sleep(1000);
   }
   throw new Error(`Timed out waiting for final deliverable for run ${runId}`);
+}
+
+async function waitForRunPage(runId: string, timeoutMs = 30000): Promise<void> {
+  const startedAt = Date.now();
+  let lastStatus = "not requested";
+  while (Date.now() - startedAt < timeoutMs) {
+    try {
+      const response = await fetch(`${BASE_URL}/runs/${runId}`);
+      lastStatus = `${response.status} ${response.statusText}`;
+      if (response.ok) {
+        return;
+      }
+    } catch (error) {
+      lastStatus = error instanceof Error ? error.message : String(error);
+    }
+    await sleep(1000);
+  }
+  throw new Error(`/runs/${runId} page did not become available: ${lastStatus}`);
 }
 
 async function fetchJson<T extends JsonRecord>(url: string): Promise<T> {

@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.2
+## 0.1.3
 
 - Packaged Harness as a Codex plugin.
 - Added plugin manifest, repo marketplace metadata, and MCP registration.
