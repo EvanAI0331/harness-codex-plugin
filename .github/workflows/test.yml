@@ -23,7 +23,8 @@ jobs:
       - run: python3 -m pip install pytest -r requirements.txt
       - run: npm run plugin:verify
       - run: npm run plugin:verify-specs
-      - run: python3 -m pytest tests/test_harness_cli.py
+      - run: python3 -m pytest
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run build
+      - run: npm audit --audit-level=moderate

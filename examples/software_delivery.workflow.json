@@ -1,0 +1,50 @@
+{
+  "workflow_id": "repo_release_workflow",
+  "schema_version": "0.1",
+  "name": "Repository Release Workflow",
+  "objective": "Prepare a repository release with implementation, tests, docs, and release evidence.",
+  "roles": [
+    {
+      "role_id": "release_planner",
+      "role_spec": "Plan release scope and map required verification evidence.",
+      "execution_spec": "Use LLM reasoning to create release steps and identify blockers.",
+      "output_spec": "Return release plan, required checks, and artifact list.",
+      "llm_driven": true
+    },
+    {
+      "role_id": "release_verifier",
+      "role_spec": "Verify tests, docs, version metadata, and marketplace install paths.",
+      "execution_spec": "Use LLM review after concrete commands and file checks complete.",
+      "output_spec": "Return release readiness, evidence, risk notes, and failure_state if blocked.",
+      "llm_driven": true
+    }
+  ],
+  "gates": [
+    {
+      "gate_id": "ci_green",
+      "condition": "CI or local verification commands pass with recorded output.",
+      "required_evidence": ["command_log", "ci_run_url"],
+      "on_pass": "Continue to release packaging.",
+      "on_failure": "Stop and return failure_state=ci_failed."
+    },
+    {
+      "gate_id": "distribution_verified",
+      "condition": "Install command, marketplace manifest, and tag ref point to the intended repo.",
+      "required_evidence": ["install_command", "marketplace_manifest", "tag_ref"],
+      "on_pass": "Return release package.",
+      "on_failure": "Stop and return failure_state=distribution_not_verified."
+    }
+  ],
+  "artifacts": [
+    { "artifact_id": "release_plan", "artifact_type": "plan", "required": true },
+    { "artifact_id": "release_evidence", "artifact_type": "evidence", "required": true }
+  ],
+  "failure_semantics": {
+    "no_fake_success": true,
+    "no_silent_fallback": true,
+    "explicit_failure_state": true
+  },
+  "execution_policy": {
+    "required_checks": ["ci_gate", "distribution_gate", "artifact_gate"]
+  }
+}

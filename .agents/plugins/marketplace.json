@@ -7,7 +7,7 @@
         "source": "git-subdir",
         "url": "https://github.com/EvanAI0331/harness-codex-marketplace.git",
         "path": "./plugins/harness-codex-plugin",
-        "ref": "v0.1.7"
+        "ref": "v0.1.8"
       },
       "policy": {
         "installation": "AVAILABLE",

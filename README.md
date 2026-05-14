@@ -4,7 +4,14 @@ Official Codex Plugin Directory publishing is not yet self-serve.
 Harness is currently distributed through a GitHub-backed Codex marketplace.
 
 ```bash
-codex plugin marketplace add https://github.com/EvanAI0331/harness-codex-marketplace.git --ref v0.1.7
+codex plugin marketplace add https://github.com/EvanAI0331/harness-codex-marketplace.git --ref v0.1.8
+```
+
+Create and verify a workflow contract:
+
+```bash
+python3 scripts/harness_cli.py init-workflow --template software_delivery --output ./harness.workflow.json
+python3 scripts/harness_cli.py verify-workflow ./harness.workflow.json
 ```
 
 Harness is the workflow framework for custom Codex agent systems.

@@ -1,0 +1,50 @@
+{
+  "workflow_id": "research_ops_workflow",
+  "schema_version": "0.1",
+  "name": "Research Ops Workflow",
+  "objective": "Run a research workflow with source evidence, decision packets, and explicit blocked states.",
+  "roles": [
+    {
+      "role_id": "research_planner",
+      "role_spec": "Define research questions, scope boundaries, and evidence requirements.",
+      "execution_spec": "Use LLM reasoning to plan source collection and risk checks.",
+      "output_spec": "Return research plan, required sources, and uncertainty notes.",
+      "llm_driven": true
+    },
+    {
+      "role_id": "research_verifier",
+      "role_spec": "Check source quality and ensure claims are evidence-bound.",
+      "execution_spec": "Use LLM review against collected evidence and required gates.",
+      "output_spec": "Return decision packet, source table, risk notes, and failure_state when blocked.",
+      "llm_driven": true
+    }
+  ],
+  "gates": [
+    {
+      "gate_id": "source_quality",
+      "condition": "Every material claim has cited evidence from acceptable sources.",
+      "required_evidence": ["source_list", "claim_evidence_map"],
+      "on_pass": "Continue to synthesis.",
+      "on_failure": "Stop and return failure_state=insufficient_evidence."
+    },
+    {
+      "gate_id": "risk_review",
+      "condition": "Known uncertainty and contrary evidence are documented.",
+      "required_evidence": ["risk_notes", "contrary_evidence"],
+      "on_pass": "Return final research packet.",
+      "on_failure": "Stop and return failure_state=missing_risk_review."
+    }
+  ],
+  "artifacts": [
+    { "artifact_id": "source_table", "artifact_type": "evidence", "required": true },
+    { "artifact_id": "decision_packet", "artifact_type": "report", "required": true }
+  ],
+  "failure_semantics": {
+    "no_fake_success": true,
+    "no_silent_fallback": true,
+    "explicit_failure_state": true
+  },
+  "execution_policy": {
+    "required_checks": ["source_gate", "claim_evidence_gate", "risk_gate"]
+  }
+}

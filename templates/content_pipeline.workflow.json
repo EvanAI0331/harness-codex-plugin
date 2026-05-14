@@ -1,0 +1,50 @@
+{
+  "workflow_id": "content_pipeline_workflow",
+  "schema_version": "0.1",
+  "name": "Content Pipeline Workflow",
+  "objective": "Produce content through role-bound planning, drafting, review, and artifact verification.",
+  "roles": [
+    {
+      "role_id": "content_planner",
+      "role_spec": "Define audience, channel, constraints, and acceptance criteria.",
+      "execution_spec": "Use LLM reasoning to produce a content brief before drafting.",
+      "output_spec": "Return content brief, outline, gates, and required artifacts.",
+      "llm_driven": true
+    },
+    {
+      "role_id": "content_reviewer",
+      "role_spec": "Verify accuracy, tone, format, and publication readiness.",
+      "execution_spec": "Use LLM review plus checklist evidence before pass/fail.",
+      "output_spec": "Return review decision, required edits, and failure_state when blocked.",
+      "llm_driven": true
+    }
+  ],
+  "gates": [
+    {
+      "gate_id": "brief_complete",
+      "condition": "Audience, channel, claims, and acceptance criteria are explicit.",
+      "required_evidence": ["content_brief"],
+      "on_pass": "Continue to draft.",
+      "on_failure": "Stop and return failure_state=incomplete_brief."
+    },
+    {
+      "gate_id": "publication_ready",
+      "condition": "Final content satisfies review checklist and required artifacts exist.",
+      "required_evidence": ["review_checklist", "final_content"],
+      "on_pass": "Return publication package.",
+      "on_failure": "Stop and return failure_state=not_publication_ready."
+    }
+  ],
+  "artifacts": [
+    { "artifact_id": "content_brief", "artifact_type": "brief", "required": true },
+    { "artifact_id": "publication_package", "artifact_type": "deliverable", "required": true }
+  ],
+  "failure_semantics": {
+    "no_fake_success": true,
+    "no_silent_fallback": true,
+    "explicit_failure_state": true
+  },
+  "execution_policy": {
+    "required_checks": ["brief_gate", "review_gate", "artifact_gate"]
+  }
+}

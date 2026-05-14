@@ -6,6 +6,13 @@ Harness is built for Codex workflows that need repeatable structure instead of f
 
 Turn a product or engineering workflow into a graph of role-bound agents, capability nodes, artifacts, and final deliverables.
 
+Start from:
+
+```bash
+python3 scripts/harness_cli.py init-workflow --template software_delivery --output ./harness.workflow.json
+python3 scripts/harness_cli.py verify-workflow ./harness.workflow.json
+```
+
 Best fit:
 
 - Repository audits
@@ -16,6 +23,13 @@ Best fit:
 ## Research and Operations
 
 Use Harness when a workflow needs separate planning, execution, evidence collection, and final report assembly.
+
+Start from:
+
+```bash
+python3 scripts/harness_cli.py init-workflow --template research_ops --output ./harness.workflow.json
+python3 scripts/harness_cli.py verify-workflow ./harness.workflow.json
+```
 
 Best fit:
 

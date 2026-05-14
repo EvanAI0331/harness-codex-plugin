@@ -1,6 +1,6 @@
 {
   "name": "harness-codex-plugin",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "private": false,
   "description": "Visual workbench for building, inspecting, and running structured multi-agent harnesses with task instances, capability registries, and artifact-based execution traces.",
   "scripts": {
@@ -34,16 +34,16 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "TODO"
+    "url": "https://github.com/EvanAI0331/harness-codex-plugin.git"
   },
-  "homepage": "TODO",
+  "homepage": "https://github.com/EvanAI0331/harness-codex-plugin",
   "bugs": {
-    "url": "TODO"
+    "url": "https://github.com/EvanAI0331/harness-codex-plugin/issues"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.2",
     "ajv": "^8.18.0",
-    "next": "^16.2.4",
+    "next": "^16.2.6",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "reactflow": "^11.11.4",
@@ -55,8 +55,11 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "eslint": "^10.2.1",
-    "eslint-config-next": "^16.2.4",
+    "eslint-config-next": "^16.2.6",
     "tsx": "^4.20.6",
     "typescript": "^6.0.3"
+  },
+  "overrides": {
+    "postcss": "^8.5.14"
   }
 }

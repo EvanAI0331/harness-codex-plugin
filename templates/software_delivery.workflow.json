@@ -1,0 +1,50 @@
+{
+  "workflow_id": "software_delivery_workflow",
+  "schema_version": "0.1",
+  "name": "Software Delivery Workflow",
+  "objective": "Plan, implement, verify, and package a software change with explicit evidence and failure states.",
+  "roles": [
+    {
+      "role_id": "planner",
+      "role_spec": "Define implementation scope, risks, and required artifacts.",
+      "execution_spec": "Use LLM reasoning to produce a task graph before any tool execution.",
+      "output_spec": "Return an implementation plan with gates and artifact expectations.",
+      "llm_driven": true
+    },
+    {
+      "role_id": "verifier",
+      "role_spec": "Evaluate code, tests, and release readiness.",
+      "execution_spec": "Use LLM review plus concrete test evidence before pass/fail.",
+      "output_spec": "Return verification status, evidence, risk notes, and failure_state when blocked.",
+      "llm_driven": true
+    }
+  ],
+  "gates": [
+    {
+      "gate_id": "tests_pass",
+      "condition": "Required tests completed with zero failures.",
+      "required_evidence": ["test_command", "test_output"],
+      "on_pass": "Continue to artifact packaging.",
+      "on_failure": "Stop and return failure_state=tests_failed."
+    },
+    {
+      "gate_id": "artifact_contract",
+      "condition": "Expected artifacts exist and are inspectable.",
+      "required_evidence": ["artifact_paths", "artifact_summary"],
+      "on_pass": "Mark workflow ready for release review.",
+      "on_failure": "Stop and return failure_state=missing_artifacts."
+    }
+  ],
+  "artifacts": [
+    { "artifact_id": "implementation_plan", "artifact_type": "plan", "required": true },
+    { "artifact_id": "verification_report", "artifact_type": "report", "required": true }
+  ],
+  "failure_semantics": {
+    "no_fake_success": true,
+    "no_silent_fallback": true,
+    "explicit_failure_state": true
+  },
+  "execution_policy": {
+    "required_checks": ["role_specs_present", "gates_have_evidence", "required_artifacts_present"]
+  }
+}
