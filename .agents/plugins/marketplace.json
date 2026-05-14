@@ -7,7 +7,7 @@
         "source": "git-subdir",
         "url": "https://github.com/BTCNAI/harness-codex-marketplace.git",
         "path": "./plugins/harness-codex-plugin",
-        "ref": "v0.1.1"
+        "ref": "v0.1.2"
       },
       "policy": {
         "installation": "AVAILABLE",
