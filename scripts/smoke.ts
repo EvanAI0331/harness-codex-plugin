@@ -156,14 +156,20 @@ async function waitForServer(timeoutMs = 120000): Promise<void> {
 
 async function waitForFinalOutput(runId: string, timeoutMs = 120000): Promise<RunOutputRecord> {
   const startedAt = Date.now();
+  let lastStatus = "not requested";
   while (Date.now() - startedAt < timeoutMs) {
-    const output = await fetchJson<RunOutputRecord>(`${BASE_URL}/api/runs/${runId}/output`);
-    if (output.finalDeliverable) {
-      return output;
+    try {
+      const output = await fetchJson<RunOutputRecord>(`${BASE_URL}/api/runs/${runId}/output`);
+      lastStatus = String(output.status ?? output.run?.status ?? "response_without_status");
+      if (output.finalDeliverable) {
+        return output;
+      }
+    } catch (error) {
+      lastStatus = error instanceof Error ? error.message : String(error);
     }
     await sleep(1000);
   }
-  throw new Error(`Timed out waiting for final deliverable for run ${runId}`);
+  throw new Error(`Timed out waiting for final deliverable for run ${runId}: ${lastStatus}`);
 }
 
 async function waitForRunPage(runId: string, timeoutMs = 30000): Promise<void> {
