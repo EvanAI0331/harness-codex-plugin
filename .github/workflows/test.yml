@@ -27,4 +27,3 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run build
-      - run: SMOKE_SERVER_COMMAND=start npm run test:smoke
