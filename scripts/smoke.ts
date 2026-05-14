@@ -107,12 +107,12 @@ async function main(): Promise<void> {
     const runId = String(run.run.id);
     console.log(`[smoke] run API ok -> ${runId}`);
 
-    await waitForRunPage(runId);
-
     const output = await waitForFinalOutput(runId);
     assert(output.status === "completed" || output.run?.status === "completed", "output API reports completed run");
     assert(output.finalDeliverable, "final deliverable exists");
     console.log(`[smoke] output API ok -> ${String(output.finalDeliverable.id)}`);
+
+    await waitForRunPage(runId);
 
     const artifacts = await fetchJson(`${BASE_URL}/api/runs/${runId}/artifacts`);
     assert(Array.isArray(artifacts.artifacts), "artifacts API returned list");

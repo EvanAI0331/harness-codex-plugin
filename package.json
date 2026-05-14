@@ -1,6 +1,6 @@
 {
   "name": "harness-codex-plugin",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": false,
   "description": "Visual workbench for building, inspecting, and running structured multi-agent harnesses with task instances, capability registries, and artifact-based execution traces.",
   "scripts": {
