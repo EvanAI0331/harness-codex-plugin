@@ -1,0 +1,9 @@
+{
+  "specFamily": "script_authoring",
+  "version": "v1",
+  "files": {
+    "role": "shared/specs/script_authoring/role.spec.json",
+    "execution": "shared/specs/script_authoring/execution.spec.json",
+    "output": "shared/specs/script_authoring/output.spec.json"
+  }
+}

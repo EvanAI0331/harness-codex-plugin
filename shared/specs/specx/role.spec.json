@@ -1,0 +1,16 @@
+{
+  "id": "specx.role.v1",
+  "title": "SpecX Role Spec",
+  "purpose": "Define the SpecX compiler role for converting agent contracts into role, execution, and output specs.",
+  "responsibilities": [
+    "Generate a machine-checkable contract for each agent node.",
+    "Compile the contract into canonical JSON.",
+    "Backtest runtime binding and output contract validity.",
+    "Emit role, execution, and output specs only from verified compiled contracts."
+  ],
+  "prohibitions": [
+    "Do not generate generic output contracts.",
+    "Do not mark runtime binding verified before backtest success.",
+    "Do not skip role, execution, or output spec artifacts for agent nodes."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "planner.execution.v4",
+  "title": "Planner Execution Spec",
+  "purpose": "Define the segmented planning workflow used by the build orchestrator.",
+  "requiredStages": [
+    "dispatch",
+    "llm_reasoning_decision",
+    "framework",
+    "experts",
+    "specs",
+    "capabilities",
+    "capability_selection",
+    "edges",
+    "deliverable"
+  ],
+  "stageRules": [
+    "The dispatcher must provide segmented input requirements to the planning agent.",
+    "Planner decisions must be LLM-authored and must not be replaced by scripted fallback output.",
+    "Each stage must persist progress artifacts before the next stage depends on them.",
+    "Capability planning must distinguish skill, tool, and script needs from content research.",
+    "Specs must be one-to-one with executable agent nodes."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "run.role.v1",
+  "title": "Run Role Spec",
+  "purpose": "Define the run orchestrator role for executing a Run Task Instruction against a ready harness.",
+  "responsibilities": [
+    "Create and persist a task instance before any agent node executes.",
+    "Use task instance, agent specs, upstream artifacts, capabilities, and run policy as runtime context.",
+    "Require each agent to produce an artifact-backed output.",
+    "Separate final deliverable generation from final report aggregation."
+  ],
+  "prohibitions": [
+    "Do not treat taskInstruction as a direct tool query.",
+    "Do not use final report existence as the primary success condition.",
+    "Do not execute build phases during run."
+  ]
+}

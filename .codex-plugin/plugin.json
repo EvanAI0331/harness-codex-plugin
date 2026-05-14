@@ -1,0 +1,39 @@
+{
+  "name": "harness-codex-plugin",
+  "version": "0.1.0",
+  "description": "Essential workflow framework runtime for building, running, and verifying custom Codex agent harnesses.",
+  "license": "MIT",
+  "author": {
+    "name": "BTCNAI",
+    "url": "https://github.com/BTCNAI"
+  },
+  "homepage": "https://github.com/BTCNAI/harness-codex-plugin",
+  "repository": "https://github.com/BTCNAI/harness-codex-plugin",
+  "keywords": [
+    "codex-plugin",
+    "workflow-framework",
+    "agent-harness",
+    "spec-driven-execution",
+    "runtime-verification"
+  ],
+  "interface": {
+    "displayName": "Harness Essential Workflow Framework",
+    "shortDescription": "The workflow framework for custom Codex agent harnesses.",
+    "longDescription": "Harness provides an essential workflow-first framework for custom Codex agent systems with role, execution, and output specs; capability registries; artifacts; runtime trace; and fail-closed verification.",
+    "developerName": "Harness contributors",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/BTCNAI/harness-codex-plugin",
+    "defaultPrompt": [
+      "Use Harness Workflow Builder to convert a custom workflow into a spec-bound harness.",
+      "Use Harness Runtime Verifier to check role, execution, output specs and artifact evidence.",
+      "Use Harness Plugin Packager before distribution."
+    ],
+    "brandColor": "#0F766E"
+  },
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}

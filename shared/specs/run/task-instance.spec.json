@@ -1,0 +1,21 @@
+{
+  "id": "run.task_instance.v1",
+  "title": "Task Instance Spec",
+  "purpose": "Define the structured planning contract used to turn a user task instruction into a persisted task instance.",
+  "requiredFields": [
+    "instruction",
+    "goal",
+    "constraints",
+    "successCriteria",
+    "perAgentAssignments",
+    "finalDeliverable",
+    "planningSummary"
+  ],
+  "validation": [
+    "The instruction must preserve the original run task wording while the goal is normalized from it.",
+    "The goal must be normalized from the task instruction and grounded in the harness blueprint.",
+    "Constraints must include run policy and harness capability boundaries.",
+    "Per-agent assignments must align with the actual harness agent roster.",
+    "The final deliverable must name one responsible agent, define the delivery format, and distinguish it from the final report."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "specFamily": "specx",
+  "version": "v1",
+  "files": {
+    "role": "shared/specs/specx/role.spec.json",
+    "execution": "shared/specs/specx/execution.spec.json",
+    "output": "shared/specs/specx/output.spec.json",
+    "contract": "shared/specs/specx/harness-contract.spec.json"
+  }
+}

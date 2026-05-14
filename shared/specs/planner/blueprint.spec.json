@@ -1,0 +1,234 @@
+{
+  "id": "planner.blueprint.v8",
+  "title": "Planner Blueprint Spec",
+  "purpose": "Define the dispatcher-selected planning agent blueprint contract for Harness Studio.",
+  "rootFieldOrder": [
+    "summary",
+    "harness",
+    "agents",
+    "specs",
+    "capabilities",
+    "edges"
+  ],
+  "minimums": {
+    "summaryMinLength": 1,
+    "agentsMinItems": 2,
+    "specsMinItems": 2,
+    "capabilitiesMinItems": 1,
+    "edgesMinItems": 1
+  },
+  "terminalOutputNode": {
+    "required": true,
+    "modelSource": "mainModel",
+    "purpose": "The framework must end with a planning-agent-selected output-capable specialist from the catalog."
+  },
+  "nodeFieldOrders": {
+    "harness": [
+      "id",
+      "nodeType",
+      "label",
+      "summary",
+      "status"
+    ],
+    "agent": [
+      "id",
+      "nodeType",
+      "label",
+      "role",
+      "agentKind",
+      "executionOrder",
+      "catalogGroup",
+      "model",
+      "status",
+      "specArtifactIds",
+      "skillArtifactIds",
+      "scriptArtifactIds",
+      "capabilityIds",
+      "createdAt",
+      "updatedAt"
+    ],
+    "spec": [
+      "id",
+      "nodeType",
+      "specType",
+      "agentId",
+      "title",
+      "summary",
+      "artifactId",
+      "specArtifactIds",
+      "compileStatus",
+      "compiledPath",
+      "stdout",
+      "stderr"
+    ],
+    "capability": [
+      "id",
+      "nodeType",
+      "label",
+      "summary",
+      "capabilityType",
+      "source",
+      "status",
+      "specArtifactIds",
+      "policyFlags",
+      "registryKey",
+      "resolutionReason",
+      "resolverName",
+      "createdAt",
+      "updatedAt"
+    ],
+    "edge": [
+      "id",
+      "source",
+      "target",
+      "relation",
+      "label"
+    ]
+  },
+  "arrayOrders": {
+    "agents": {
+      "sortKey": "executionOrder",
+      "order": [
+        "dispatcher",
+        "expert"
+      ],
+      "description": "Execution order. The dispatcher must be first, the planning agent must be second, and all remaining nodes are expert selections ordered by execution priority."
+    },
+    "specs": {
+      "sortKey": "agentId",
+      "mirrorArray": "agents",
+      "description": "Dependency order. Spec nodes must mirror the agent execution order one-to-one."
+    },
+    "capabilities": {
+      "sortKey": "source",
+      "order": [
+        "builtin",
+        "local",
+        "github",
+        "generated",
+        "unresolved"
+      ],
+      "tieBreakers": [
+        "capabilityType",
+        "registryKey",
+        "id"
+      ],
+      "description": "Resolution order. Capability nodes must be grouped by resolver pass order."
+    },
+    "edges": {
+      "sortKey": "relation",
+      "segments": [
+        {
+          "name": "structure",
+          "description": "Structural edges must be emitted first.",
+          "classes": [
+            {
+              "name": "harness_association",
+              "relations": [
+                "contains"
+              ],
+              "tieBreakers": [
+                "source",
+                "target",
+                "id"
+              ],
+              "description": "Harness association edges link the harness root to agent nodes. The harness is the source and the agent is the target."
+            },
+            {
+              "name": "spec_definition",
+              "relations": [
+                "defines"
+              ],
+              "tieBreakers": [
+                "source",
+                "target",
+                "id"
+              ],
+              "description": "Spec definition edges link agents to spec nodes. The agent is the source and the spec node is the target."
+            }
+          ]
+        },
+        {
+          "name": "dependency",
+          "description": "Dependency edges must be emitted after structural edges.",
+          "classes": [
+            {
+              "name": "runtime_delegation",
+              "relations": [
+                "delegates_to"
+              ],
+              "tieBreakers": [
+                "source",
+                "target",
+                "id"
+              ],
+              "description": "Runtime delegation edges connect the harness root to the entry agent. The harness is the source and the entry agent is the target."
+            },
+            {
+              "name": "phase_transfer",
+              "relations": [
+                "feeds"
+              ],
+              "tieBreakers": [
+                "source",
+                "target",
+                "id"
+              ],
+              "description": "Phase transfer edges pass outputs between adjacent stages. The upstream stage is the source and the downstream stage is the target."
+            },
+            {
+              "name": "execution_dependency",
+              "relations": [
+                "depends_on"
+              ],
+              "tieBreakers": [
+                "source",
+                "target",
+                "id"
+              ],
+              "description": "Execution dependency edges encode runtime ordering constraints. The prerequisite or upstream node is the source and the dependent or downstream node is the target."
+            }
+          ]
+        },
+        {
+          "name": "resolution",
+          "description": "Capability resolution edges must be emitted last.",
+          "classes": [
+            {
+              "name": "capability_resolution",
+              "relations": [
+                "requires"
+              ],
+              "tieBreakers": [
+                "source",
+                "target",
+                "id"
+              ],
+              "description": "Capability resolution edges connect agents to resolved capabilities. The agent is the source and the capability is the target."
+            },
+            {
+              "name": "capability_missing",
+              "relations": [
+                "missing"
+              ],
+              "tieBreakers": [
+                "source",
+                "target",
+                "id"
+              ],
+              "description": "Capability missing edges record unresolved capability dependencies. The agent is the source and the unresolved capability is the target."
+            }
+          ]
+        }
+      ],
+      "description": "Graph order. Edges must be emitted in structure -> dependency -> resolution order."
+    }
+  },
+  "canonicalization": {
+    "strictRootOrder": true,
+    "strictNodeOrder": true,
+    "strictArrayOrder": true,
+    "rejectEmptyCollections": true,
+    "rejectUnknownFields": true
+  }
+}

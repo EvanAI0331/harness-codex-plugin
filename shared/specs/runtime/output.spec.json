@@ -1,0 +1,17 @@
+{
+  "id": "runtime.output.v1",
+  "title": "Runtime Agent Output Spec",
+  "purpose": "Define the runtime decision and artifact output shape.",
+  "requiredFields": [
+    "actionDecision",
+    "capabilitySelection",
+    "expectedArtifactSchema",
+    "handoffSummary",
+    "agentOutputDraft"
+  ],
+  "qualityGates": [
+    "agentOutputDraft.contentJson must contain the compiled contract content fields.",
+    "agentOutputDraft.contentText must be a concrete role-specific deliverable fragment.",
+    "Generic fields such as nodeId, status, trace, or summary must not replace role-specific content."
+  ]
+}

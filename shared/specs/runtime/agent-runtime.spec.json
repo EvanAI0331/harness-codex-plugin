@@ -1,0 +1,21 @@
+{
+  "id": "runtime.agent.v1",
+  "title": "Agent Runtime Spec",
+  "purpose": "Define the structured runtime decision contract for a harness agent node.",
+  "requiredFields": [
+    "actionDecision",
+    "capabilitySelection",
+    "expectedArtifactSchema",
+    "handoffSummary",
+    "taskSummary",
+    "upstreamArtifactIds",
+    "outputFocus",
+    "agentOutputDraft"
+  ],
+  "validation": [
+    "The agent must reason from the task instance before selecting an action.",
+    "The selected capability must be consistent with the available capability roster.",
+    "The expected artifact schema must describe the artifact the agent expects to emit.",
+    "The agentOutputDraft must be the actual node product that will be persisted as an artifact."
+  ]
+}

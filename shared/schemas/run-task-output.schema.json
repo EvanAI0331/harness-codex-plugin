@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "runId",
+    "harnessId",
+    "taskInstruction",
+    "title",
+    "summary",
+    "status",
+    "reportMarkdown",
+    "sections",
+    "evidence",
+    "deliverables",
+    "risks",
+    "nextSteps"
+  ],
+  "properties": {
+    "runId": { "type": "string", "minLength": 1 },
+    "harnessId": { "type": "string", "minLength": 1 },
+    "taskInstruction": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1, "maxLength": 220 },
+    "summary": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "status": { "enum": ["success", "partial", "failed"] },
+    "reportMarkdown": { "type": "string", "minLength": 1 },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "bullets"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+          "bullets": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["nodeId", "nodeName", "action", "summary", "timestamp"],
+        "properties": {
+          "nodeId": { "type": "string", "minLength": 1 },
+          "nodeName": { "type": "string", "minLength": 1 },
+          "action": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 },
+          "timestamp": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "deliverables": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "risks": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "nextSteps": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

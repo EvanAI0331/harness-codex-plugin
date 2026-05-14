@@ -1,0 +1,25 @@
+{
+  "id": "script_authoring.execution.v1",
+  "title": "Script Authoring Execution Spec",
+  "purpose": "Describe the execution chain for producing and compiling skill and script artifacts.",
+  "requiredStages": [
+    "intake",
+    "spec-binding",
+    "llm_authoring_decision",
+    "skill-authoring",
+    "script-authoring",
+    "compile",
+    "backtest",
+    "persist"
+  ],
+  "stageNotes": [
+    "intake binds the harness and target agent model.",
+    "spec-binding derives the node contract and file layout.",
+    "llm_authoring_decision decides whether a skill, script, or no executable artifact is required.",
+    "skill-authoring emits a real skill file.",
+    "script-authoring emits an executable script that reads runtime input from environment variables and prints its result to stdout.",
+    "compile validates the generated files and writes them to disk.",
+    "backtest verifies that the artifacts are usable by runtime.",
+    "persist records artifact ids and file paths on the agent node."
+  ]
+}

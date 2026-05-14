@@ -1,0 +1,20 @@
+{
+  "Local Repository Search": {
+    "type": "tool",
+    "source": "local",
+    "label": "Local Repository Search",
+    "summary": "Local repository search capability for harness planning."
+  },
+  "Skill Generation": {
+    "type": "skill",
+    "source": "local",
+    "label": "Skill Generation",
+    "summary": "Local skill authoring capability."
+  },
+  "Script Generation": {
+    "type": "script",
+    "source": "local",
+    "label": "Script Generation",
+    "summary": "Local script authoring capability."
+  }
+}

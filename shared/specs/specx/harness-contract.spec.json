@@ -1,0 +1,129 @@
+{
+  "id": "specx.harness.contract.v1",
+  "title": "SpecX Harness Contract Spec",
+  "purpose": "Define the machine-checkable contract layer used to generate, compile, validate, and bind harness specs to runtime.",
+  "rootFieldOrder": [
+    "contractId",
+    "specFamily",
+    "specVersion",
+    "scope",
+    "harness",
+    "agent",
+    "runtimeBinding",
+    "outputContract",
+    "validation",
+    "backtest"
+  ],
+  "minimums": {
+    "contractIdMinLength": 1,
+    "specFamilyMinLength": 1,
+    "specVersionMinLength": 1,
+    "runtimeDependenciesMinItems": 1,
+    "requiredCapabilitiesMinItems": 1,
+    "requiredArtifactsMinItems": 10,
+    "outputFieldsMinItems": 3,
+    "backtestCasesMinItems": 2
+  },
+  "nodeFieldOrders": {
+    "harness": [
+      "id",
+      "nodeType",
+      "label",
+      "summary",
+      "status",
+      "goal",
+      "mainModel",
+      "auxiliaryModel",
+      "codingAgentModel",
+      "capabilityPolicy"
+    ],
+    "agent": [
+      "id",
+      "nodeType",
+      "label",
+      "role",
+      "model",
+      "status",
+      "capabilityIds",
+      "dependencyIds",
+      "specArtifactIds",
+      "skillArtifactIds",
+      "scriptArtifactIds"
+    ],
+    "runtimeBinding": [
+      "contractArtifactId",
+      "sourceArtifactId",
+      "compiledArtifactId",
+      "backtestArtifactId",
+      "contractVersion",
+      "entry",
+      "dependencyIds",
+      "requiredCapabilities",
+      "requiredArtifacts",
+      "outputFields",
+      "runtimeOrder",
+      "sourceHash",
+      "compiledHash",
+      "backtestStatus"
+    ],
+    "outputContract": [
+      "artifactType",
+      "outputType",
+      "role",
+      "roleResponsibilities",
+      "requiredFields",
+      "contentFields",
+      "qualityGates"
+    ],
+    "validation": [
+      "requiredArtifacts",
+      "requiredChecks",
+      "runtimeGate",
+      "contractGate"
+    ],
+    "backtest": [
+      "cases",
+      "expectedFailureModes"
+    ]
+  },
+  "arrayOrders": {
+    "runtimeBinding": {
+      "requiredArtifacts": [
+        "spec.contract.source",
+        "role",
+        "execution",
+        "output",
+        "spec.contract.compiled",
+        "skill.source",
+        "skill.compiled",
+        "script.source",
+        "script.compiled",
+        "spec.contract.backtest"
+      ],
+      "outputFields": [
+        "roleDeliverable",
+        "roleFindings",
+        "roleHandoff",
+        "roleEvidence",
+        "roleRisks",
+        "roleNextActions"
+      ],
+      "dependencyIds": "source-first"
+    },
+    "backtestCases": {
+      "order": [
+        "contract_source_present",
+        "contract_compiled_roundtrip",
+        "runtime_binding_resolvable",
+        "runtime_output_contract_valid"
+      ]
+    }
+  },
+  "canonicalization": {
+    "strictRootOrder": true,
+    "strictNodeOrder": true,
+    "strictArrayOrder": true,
+    "rejectEmptyCollections": true,
+    "rejectUnknownFields": true
+  }
+}

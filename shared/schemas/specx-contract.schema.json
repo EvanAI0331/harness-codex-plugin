@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "contractId",
+    "specFamily",
+    "specVersion",
+    "scope",
+    "harness",
+    "agent",
+    "runtimeBinding",
+    "outputContract",
+    "validation",
+    "backtest"
+  ],
+  "properties": {
+    "contractId": { "type": "string", "minLength": 1 },
+    "specFamily": { "type": "string", "minLength": 1 },
+    "specVersion": { "type": "string", "minLength": 1 },
+    "scope": { "enum": ["harness-agent"] },
+    "harness": {
+      "type": "object",
+      "required": ["id", "nodeType", "label", "summary", "status", "goal", "mainModel", "auxiliaryModel", "codingAgentModel", "capabilityPolicy"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "nodeType": { "enum": ["harness"] },
+        "label": { "type": "string", "minLength": 1 },
+        "summary": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["draft", "draft_ready", "dirty", "building", "ready", "failed"] },
+        "goal": { "type": "string", "minLength": 1 },
+        "mainModel": { "$ref": "#/$defs/modelConfig" },
+        "auxiliaryModel": { "$ref": "#/$defs/modelConfig" },
+        "codingAgentModel": { "$ref": "#/$defs/modelConfig" },
+        "capabilityPolicy": { "$ref": "#/$defs/capabilityPolicy" }
+      },
+      "additionalProperties": false
+    },
+    "agent": {
+      "type": "object",
+      "required": ["id", "nodeType", "label", "role", "model", "status", "capabilityIds", "dependencyIds", "specArtifactIds", "skillArtifactIds", "scriptArtifactIds"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "nodeType": { "enum": ["agent"] },
+        "label": { "type": "string", "minLength": 1 },
+        "role": { "type": "string", "minLength": 1 },
+        "model": { "$ref": "#/$defs/modelConfig" },
+        "status": { "enum": ["idle", "queued", "ready", "running", "completed", "blocked", "failed"] },
+        "capabilityIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "dependencyIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "specArtifactIds": { "type": "array", "items": { "type": "string" } },
+        "skillArtifactIds": { "type": "array", "items": { "type": "string" } },
+        "scriptArtifactIds": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "runtimeBinding": {
+      "type": "object",
+      "required": [
+        "contractArtifactId",
+        "sourceArtifactId",
+        "compiledArtifactId",
+        "contractVersion",
+        "entry",
+        "dependencyIds",
+        "requiredCapabilities",
+        "requiredArtifacts",
+        "outputFields",
+        "runtimeOrder",
+        "sourceHash",
+        "backtestStatus"
+      ],
+      "properties": {
+        "contractArtifactId": { "type": "string", "minLength": 1 },
+        "sourceArtifactId": { "type": "string", "minLength": 1 },
+        "compiledArtifactId": { "type": "string", "minLength": 1 },
+        "backtestArtifactId": { "type": "string", "minLength": 1 },
+        "contractVersion": { "type": "string", "minLength": 1 },
+        "entry": { "type": "boolean" },
+        "dependencyIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "requiredCapabilities": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "requiredArtifacts": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "spec.contract.source",
+              "role",
+              "execution",
+              "output",
+              "spec.contract.compiled",
+              "skill.source",
+              "skill.compiled",
+              "script.source",
+              "script.compiled",
+              "spec.contract.backtest"
+            ]
+          },
+          "minItems": 10
+        },
+        "outputFields": { "type": "array", "items": { "type": "string" }, "minItems": 3 },
+        "runtimeOrder": { "type": "integer", "minimum": 0 },
+        "sourceHash": { "type": "string", "minLength": 1 },
+        "compiledHash": { "type": "string", "minLength": 1 },
+        "backtestStatus": { "enum": ["pending", "success", "failure"] }
+      },
+      "additionalProperties": false
+    },
+    "outputContract": {
+      "type": "object",
+      "required": ["artifactType", "outputType", "role", "roleResponsibilities", "requiredFields", "contentFields", "qualityGates"],
+      "properties": {
+        "artifactType": { "enum": ["agent.output"] },
+        "outputType": { "type": "string", "minLength": 1 },
+        "role": { "type": "string", "minLength": 1 },
+        "roleResponsibilities": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 3 },
+        "requiredFields": { "type": "array", "items": { "type": "string" }, "minItems": 3 },
+        "contentFields": { "type": "array", "items": { "type": "string" }, "minItems": 3 },
+        "qualityGates": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 3 }
+      },
+      "additionalProperties": false
+    },
+    "validation": {
+      "type": "object",
+      "required": ["requiredArtifacts", "requiredChecks", "runtimeGate", "contractGate"],
+      "properties": {
+        "requiredArtifacts": { "type": "array", "items": { "type": "string" }, "minItems": 10 },
+        "requiredChecks": { "type": "array", "items": { "type": "string" }, "minItems": 3 },
+        "runtimeGate": { "type": "string", "minLength": 1 },
+        "contractGate": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "backtest": {
+      "type": "object",
+      "required": ["cases", "expectedFailureModes"],
+      "properties": {
+        "cases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "expected"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "name": { "type": "string", "minLength": 1 },
+              "expected": { "enum": ["pass", "fail"] }
+            },
+            "additionalProperties": false
+          },
+          "minItems": 2
+        },
+        "expectedFailureModes": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "modelConfig": {
+      "type": "object",
+      "required": ["provider", "model", "temperature", "maxTokens"],
+      "properties": {
+        "provider": { "type": "string", "minLength": 1 },
+        "model": { "type": "string", "minLength": 1 },
+        "baseURL": { "type": "string" },
+        "credentialRef": { "type": "string" },
+        "temperature": { "type": "number" },
+        "maxTokens": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "capabilityPolicy": {
+      "type": "object",
+      "required": ["allowGithubSearch", "allowAutoGenerateSkill", "allowAutoGenerateScript"],
+      "properties": {
+        "allowGithubSearch": { "type": "boolean" },
+        "allowAutoGenerateSkill": { "type": "boolean" },
+        "allowAutoGenerateScript": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

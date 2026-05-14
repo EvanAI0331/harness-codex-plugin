@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HarnessBlueprint",
+  "type": "object",
+  "required": ["summary", "harness", "agents", "specs", "capabilities", "edges"],
+  "properties": {
+    "summary": { "type": "string", "minLength": 1, "maxLength": 220 },
+    "harness": {
+      "type": "object",
+      "required": ["id", "nodeType", "label", "summary", "status"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "nodeType": { "const": "harness" },
+        "label": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 220 },
+        "status": { "enum": ["draft", "draft_ready", "dirty", "building", "ready", "failed"] }
+      },
+      "additionalProperties": false
+    },
+    "agents": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["id", "nodeType", "label", "role", "agentKind", "executionOrder", "catalogGroup", "model", "status", "specArtifactIds", "capabilityIds", "createdAt", "updatedAt"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "nodeType": { "const": "agent" },
+          "label": { "type": "string", "minLength": 1, "maxLength": 120 },
+          "role": { "type": "string", "minLength": 1, "maxLength": 120 },
+          "agentKind": { "enum": ["dispatcher", "expert", "coding"] },
+          "executionOrder": { "type": "integer", "minimum": 0 },
+          "catalogGroup": { "type": "string", "minLength": 1, "maxLength": 120 },
+          "model": { "$ref": "#/$defs/modelConfig" },
+          "status": { "enum": ["idle", "queued", "ready", "running", "completed", "blocked", "failed"] },
+          "specArtifactIds": { "type": "array", "items": { "type": "string" } },
+          "skillArtifactIds": { "type": "array", "items": { "type": "string" } },
+          "scriptArtifactIds": { "type": "array", "items": { "type": "string" } },
+          "capabilityIds": { "type": "array", "items": { "type": "string" } },
+          "createdAt": { "type": "string", "minLength": 1 },
+          "updatedAt": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "specs": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["id", "nodeType", "specType", "agentId", "title", "summary", "artifactId", "specArtifactIds"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "nodeType": { "const": "spec" },
+          "specType": { "const": "agent" },
+          "agentId": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+          "summary": { "type": "string", "minLength": 1, "maxLength": 220 },
+          "artifactId": { "type": "string" },
+          "specArtifactIds": { "type": "array", "items": { "type": "string" } },
+          "compileStatus": { "enum": ["pending", "success", "failure"] },
+          "compiledPath": { "type": "string" },
+          "stdout": { "type": "string" },
+          "stderr": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "nodeType", "label", "summary", "capabilityType", "source", "status", "specArtifactIds", "policyFlags", "createdAt", "updatedAt"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "nodeType": { "const": "capability" },
+          "label": { "type": "string", "minLength": 1, "maxLength": 120 },
+          "summary": { "type": "string", "minLength": 1, "maxLength": 220 },
+          "capabilityType": { "enum": ["tool", "skill", "script"] },
+          "source": { "enum": ["builtin", "local", "github", "generated", "unresolved"] },
+          "status": { "enum": ["unresolved", "resolved", "missing", "ready", "blocked", "failed"] },
+          "specArtifactIds": { "type": "array", "items": { "type": "string" } },
+          "policyFlags": {
+            "type": "object",
+            "required": ["allowGithubSearch", "allowAutoGenerateSkill", "allowAutoGenerateScript"],
+            "properties": {
+              "allowGithubSearch": { "type": "boolean" },
+              "allowAutoGenerateSkill": { "type": "boolean" },
+              "allowAutoGenerateScript": { "type": "boolean" }
+            },
+            "additionalProperties": false
+          },
+          "registryKey": { "type": "string" },
+          "resolutionReason": { "type": "string", "maxLength": 220 },
+          "resolverName": { "type": "string" },
+          "createdAt": { "type": "string", "minLength": 1 },
+          "updatedAt": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "edges": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "source", "target", "relation"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "source": { "type": "string", "minLength": 1 },
+          "target": { "type": "string", "minLength": 1 },
+          "relation": { "enum": ["contains", "defines", "feeds", "requires", "delegates_to", "depends_on", "missing"] },
+          "label": { "type": "string", "maxLength": 120 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "modelConfig": {
+      "type": "object",
+      "required": ["provider", "model", "temperature", "maxTokens"],
+      "properties": {
+        "provider": { "type": "string", "minLength": 1 },
+        "model": { "type": "string", "minLength": 1 },
+        "baseURL": { "type": "string" },
+        "credentialRef": { "type": "string" },
+        "temperature": { "type": "number" },
+        "maxTokens": { "type": "number" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

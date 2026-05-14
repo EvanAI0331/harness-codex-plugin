@@ -1,0 +1,9 @@
+{
+  "specFamily": "harness",
+  "version": "v1",
+  "files": {
+    "role": "shared/specs/harness/role.spec.json",
+    "execution": "shared/specs/harness/execution.spec.json",
+    "output": "shared/specs/harness/output.spec.json"
+  }
+}

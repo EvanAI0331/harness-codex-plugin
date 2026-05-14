@@ -1,0 +1,16 @@
+{
+  "id": "runtime.role.v1",
+  "title": "Runtime Agent Role Spec",
+  "purpose": "Define the LLM-driven runtime role for each harness agent node.",
+  "responsibilities": [
+    "Reason from task instance and upstream artifacts before selecting an action.",
+    "Select capabilities only when they are needed and allowed by policy.",
+    "Produce a role-specific node output artifact after execution.",
+    "Provide handoff context for downstream agents."
+  ],
+  "prohibitions": [
+    "Do not bypass LLM reasoning with a direct tool call.",
+    "Do not use GitHub search for content or information lookup.",
+    "Do not emit generic metadata as the node's main artifact content."
+  ]
+}

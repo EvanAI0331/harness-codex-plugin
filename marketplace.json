@@ -1,0 +1,20 @@
+{
+  "name": "harness-codex-plugin",
+  "interface": {
+    "displayName": "Harness Essential Workflow Framework"
+  },
+  "plugins": [
+    {
+      "name": "harness-codex-plugin",
+      "source": {
+        "source": "local",
+        "path": "./plugins/harness-codex-plugin"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

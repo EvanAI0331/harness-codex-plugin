@@ -1,0 +1,20 @@
+{
+  "id": "run.execution.v1",
+  "title": "Run Execution Spec",
+  "purpose": "Define the task-driven multi-agent runtime sequence.",
+  "requiredStages": [
+    "task_instance_planning",
+    "agent_llm_decision",
+    "capability_action",
+    "artifact_write",
+    "handoff",
+    "final_deliverable_aggregation",
+    "final_report_aggregation"
+  ],
+  "stageRules": [
+    "Each agent must read the persisted task instance and upstream artifacts.",
+    "Capability calls must follow an LLM action decision.",
+    "Every successful agent node must write agent.output.",
+    "Failures must write error.report artifacts."
+  ]
+}

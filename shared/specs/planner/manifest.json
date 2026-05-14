@@ -1,0 +1,10 @@
+{
+  "specFamily": "planner",
+  "version": "v4",
+  "files": {
+    "role": "shared/specs/planner/role.spec.json",
+    "execution": "shared/specs/planner/execution.spec.json",
+    "output": "shared/specs/planner/output.spec.json",
+    "blueprint": "shared/specs/planner/blueprint.spec.json"
+  }
+}

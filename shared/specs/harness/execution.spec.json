@@ -1,0 +1,21 @@
+{
+  "id": "harness.execution.v1",
+  "title": "Harness Execution Spec",
+  "purpose": "Describe intake, planning, compilation, build, run, and task output phases.",
+  "requiredStages": [
+    "intake",
+    "planning",
+    "spec-compile",
+    "build",
+    "run",
+    "task-output"
+  ],
+  "stageNotes": [
+    "intake creates a draft harness record",
+    "planning produces a structured blueprint",
+    "spec-compile emits role, execution, and output artifacts",
+    "build only opens the scaffolded pipeline and stops before runtime",
+    "run is a first-class runId-scoped execution path",
+    "task-output turns runtime evidence into a persisted task deliverable"
+  ]
+}

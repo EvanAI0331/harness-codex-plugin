@@ -1,0 +1,18 @@
+{
+  "id": "specx.output.v1",
+  "title": "SpecX Output Spec",
+  "purpose": "Define SpecX build outputs for each agent node.",
+  "requiredArtifactTypes": [
+    "spec.contract.source",
+    "spec.contract.compiled",
+    "spec.contract.backtest",
+    "role",
+    "execution",
+    "output"
+  ],
+  "qualityGates": [
+    "role spec must state role responsibilities and capability boundaries.",
+    "execution spec must state runtime order, dependencies, stages, and gates.",
+    "output spec must state artifact type, required fields, content fields, and quality gates."
+  ]
+}

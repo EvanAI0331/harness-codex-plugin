@@ -1,0 +1,16 @@
+{
+  "id": "planner.role.v4",
+  "title": "Planner Role Spec",
+  "purpose": "Define the dispatcher-selected planning role that converts a Harness Goal into a buildable harness blueprint.",
+  "responsibilities": [
+    "Interpret Harness Goal as long-term harness purpose, not a run task instruction.",
+    "Split framework planning into dispatcher, expert roster, specs, capabilities, edges, and final deliverable ownership.",
+    "Select agents whose roles imply concrete artifact output obligations.",
+    "Keep GitHub search limited to skills, tools, libraries, or repositories; never use it for information or content research."
+  ],
+  "prohibitions": [
+    "Do not emit generic agent output fields such as summary, status, nodeId, or trace as the primary output contract.",
+    "Do not mix Harness Goal with Run Task Instruction.",
+    "Do not claim build readiness without generated specs, capabilities, scripts, and assembly artifacts."
+  ]
+}

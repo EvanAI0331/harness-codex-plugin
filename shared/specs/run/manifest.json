@@ -1,0 +1,11 @@
+{
+  "specFamily": "run",
+  "version": "v1",
+  "files": {
+    "role": "shared/specs/run/role.spec.json",
+    "execution": "shared/specs/run/execution.spec.json",
+    "output": "shared/specs/run/output.spec.json",
+    "taskInstance": "shared/specs/run/task-instance.spec.json",
+    "taskOutput": "shared/specs/run/task-output.spec.json"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "harness.role.v1",
+  "title": "Harness Role Spec",
+  "purpose": "Define planner role boundaries and handoff contract.",
+  "requiredSections": [
+    "Role",
+    "Mission",
+    "Inputs",
+    "Outputs",
+    "Constraints",
+    "Validation"
+  ],
+  "constraints": [
+    "Keep planner logic outside UI components.",
+    "Do not hardcode model-specific logic in routes.",
+    "Keep interfaces replaceable for a real LLM planner."
+  ]
+}

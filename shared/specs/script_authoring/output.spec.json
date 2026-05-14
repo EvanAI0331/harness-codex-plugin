@@ -1,0 +1,17 @@
+{
+  "id": "script_authoring.output.v1",
+  "title": "Script Authoring Output Spec",
+  "purpose": "Define the strict output shape for the coding agent.",
+  "requiredFields": [
+    "summary",
+    "skill",
+    "script",
+    "artifacts",
+    "validation"
+  ],
+  "validation": [
+    "Every agent must receive both a skill artifact and a script artifact.",
+    "Skill and script source text must be non-empty.",
+    "The script must be executable and compile successfully before the framework can be marked ready."
+  ]
+}

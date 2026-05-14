@@ -1,0 +1,28 @@
+{
+  "Requirement Intake": {
+    "type": "tool",
+    "source": "builtin",
+    "label": "Requirement Intake",
+    "summary": "Normalize intake inputs into a structured harness request."
+  },
+  "Harness Graph Assembly": {
+    "type": "tool",
+    "source": "builtin",
+    "label": "Harness Graph Assembly",
+    "summary": "Assemble harness graph nodes and edges from a blueprint."
+  },
+  "Agent Reach External Search": {
+    "type": "tool",
+    "source": "builtin",
+    "label": "Agent Reach External Search",
+    "aliases": ["External Search", "Web Search", "Internet Search"],
+    "summary": "External web and code search via Agent Reach and Exa MCP."
+  },
+  "Agent Reach GitHub Search": {
+    "type": "tool",
+    "source": "builtin",
+    "label": "Agent Reach GitHub Search",
+    "aliases": ["GitHub Search", "GitHub Repo Search", "Repo Search", "Repository Search", "Code Search", "Skill Search", "Tool Search"],
+    "summary": "GitHub repository and code search for skills, tools, and libraries only."
+  }
+}

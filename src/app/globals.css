@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --bg: #050b14;
+  --bg-soft: #0a1220;
+  --panel: rgba(10, 16, 28, 0.76);
+  --panel-border: rgba(148, 163, 184, 0.16);
+  --text: #edf3ff;
+  --muted: #9fb0cd;
+  --accent: #77a8ff;
+  --accent-strong: #9dc4ff;
+  --danger: #f08b8b;
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.36);
+  font-family: "SF Pro Text", "SF Pro Display", "PingFang SC", "Helvetica Neue", "Noto Sans SC", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(111, 168, 255, 0.18), transparent 28%),
+    radial-gradient(circle at 82% 10%, rgba(88, 214, 165, 0.08), transparent 24%),
+    radial-gradient(circle at 50% 100%, rgba(124, 58, 237, 0.1), transparent 24%),
+    linear-gradient(180deg, #040915 0%, #07111c 44%, #050b14 100%);
+  color: var(--text);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+textarea {
+  font-family: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  opacity: 1;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+::selection {
+  background: rgba(119, 168, 255, 0.24);
+  color: #f8fbff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(9, 17, 26, 0.9);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.24);
+  border-radius: 999px;
+  border: 2px solid rgba(9, 17, 26, 0.9);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.34);
+}

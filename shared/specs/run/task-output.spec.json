@@ -1,0 +1,24 @@
+{
+  "id": "run.task_output.v1",
+  "title": "Run Task Output Spec",
+  "purpose": "Define the structured output contract for a task run executed on top of an existing harness workflow.",
+  "requiredFields": [
+    "runId",
+    "harnessId",
+    "taskInstruction",
+    "title",
+    "summary",
+    "status",
+    "reportMarkdown",
+    "sections",
+    "evidence",
+    "deliverables",
+    "risks",
+    "nextSteps"
+  ],
+  "validation": [
+    "Run output must be grounded in the active harness blueprint, task instance, final deliverable, and actual runtime evidence.",
+    "The final report must be written as a persisted run artifact.",
+    "No completion state may be claimed without a final deliverable artifact."
+  ]
+}

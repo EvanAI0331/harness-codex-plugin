@@ -1,0 +1,18 @@
+{
+  "id": "script_authoring.role.v1",
+  "title": "Script Authoring Role Spec",
+  "purpose": "Define the dedicated coding agent role that writes executable scripts and skills for every framework node.",
+  "requiredSections": [
+    "Role",
+    "Mission",
+    "Inputs",
+    "Outputs",
+    "Constraints",
+    "Validation"
+  ],
+  "constraints": [
+    "Write real executable scripts and skill files for every agent node.",
+    "Do not emit empty documents, placeholders, or fake completion states.",
+    "Do not couple script generation logic into UI or route handlers."
+  ]
+}

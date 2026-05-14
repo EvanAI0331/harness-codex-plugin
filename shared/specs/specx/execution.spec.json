@@ -1,0 +1,21 @@
+{
+  "id": "specx.execution.v1",
+  "title": "SpecX Execution Spec",
+  "purpose": "Define the SpecX compile chain used during harness build.",
+  "requiredStages": [
+    "contract_source_generation",
+    "llm_contract_reasoning",
+    "contract_canonicalization",
+    "schema_validation",
+    "contract_compilation",
+    "capability_binding",
+    "runtime_binding_backtest",
+    "three_layer_spec_generation"
+  ],
+  "stageRules": [
+    "Contract source must include harness, agent, runtimeBinding, outputContract, validation, and backtest sections.",
+    "Contract reasoning must be explicit and must fail closed when required governance fields are missing.",
+    "Compiled contracts must reject unknown fields and invalid ordering.",
+    "Three-layer specs must be derived from the compiled contract and linked through compiledFrom."
+  ]
+}

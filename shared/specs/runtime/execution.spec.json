@@ -1,0 +1,19 @@
+{
+  "id": "runtime.execution.v1",
+  "title": "Runtime Agent Execution Spec",
+  "purpose": "Define the per-agent execution sequence inside a run.",
+  "requiredStages": [
+    "load_task_instance",
+    "load_agent_spec",
+    "load_upstream_artifacts",
+    "llm_action_decision",
+    "capability_selection",
+    "skill_or_script_execution",
+    "agent_output_artifact_write"
+  ],
+  "stageRules": [
+    "The LLM decision must include actionDecision, capabilitySelection, expectedOutputType, handoffSummary, and agentOutputDraft.",
+    "Tool, skill, and script actions are optional decisions, not the default runtime behavior.",
+    "Agent output must satisfy the compiled SpecX output contract."
+  ]
+}

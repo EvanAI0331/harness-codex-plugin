@@ -1,0 +1,18 @@
+{
+  "id": "harness.output.v1",
+  "title": "Harness Output Spec",
+  "purpose": "Define the structured shape of planner and build outputs.",
+  "requiredFields": [
+    "summary",
+    "harness",
+    "agents",
+    "specs",
+    "capabilities",
+    "edges"
+  ],
+  "validation": [
+    "Every node must declare a nodeType.",
+    "Graph data must be derived from blueprint data, not coupled to API return shape.",
+    "NodeInspector must receive structured data."
+  ]
+}

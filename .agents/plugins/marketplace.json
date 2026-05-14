@@ -1,0 +1,19 @@
+{
+  "name": "harness-codex-marketplace",
+  "plugins": [
+    {
+      "name": "harness-codex-plugin",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/BTCNAI/harness-codex-marketplace.git",
+        "path": "./plugins/harness-codex-plugin",
+        "ref": "v0.1.0"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

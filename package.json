@@ -1,0 +1,62 @@
+{
+  "name": "harness-codex-plugin",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Visual workbench for building, inspecting, and running structured multi-agent harnesses with task instances, capability registries, and artifact-based execution traces.",
+  "scripts": {
+    "dev": "next dev",
+    "demo": "DEMO_MODE=true SPECX_MODE=mock next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "npm run typecheck && tsx scripts/lint.ts",
+    "specx:verify": "tsx scripts/verify-specx-three-layer.ts",
+    "test:smoke": "tsx scripts/smoke.ts",
+    "plugin:verify": "python3 scripts/harness_cli.py verify-plugin .",
+    "plugin:verify-specs": "python3 scripts/harness_cli.py verify-specs .",
+    "plugin:explain": "python3 scripts/harness_cli.py explain .",
+    "db:reset": "tsx scripts/db-reset.ts",
+    "agent-reach:doctor": "PYTHONPATH=vendor/agent-reach python3 -m agent_reach.cli doctor",
+    "agent-reach:install": "PYTHONPATH=vendor/agent-reach python3 -m agent_reach.cli install --env=auto"
+  },
+  "keywords": [
+    "agents",
+    "multi-agent",
+    "workflow",
+    "orchestration",
+    "harness",
+    "runtime",
+    "artifacts",
+    "trace",
+    "spec"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "TODO"
+  },
+  "homepage": "TODO",
+  "bugs": {
+    "url": "TODO"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
+    "ajv": "^8.18.0",
+    "next": "^16.2.4",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "reactflow": "^11.11.4",
+    "tailwindcss": "^4.2.2",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^10.2.1",
+    "eslint-config-next": "^16.2.4",
+    "tsx": "^4.20.6",
+    "typescript": "^6.0.3"
+  }
+}

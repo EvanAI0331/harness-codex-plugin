@@ -1,0 +1,20 @@
+{
+  "id": "run.output.v1",
+  "title": "Run Output Spec",
+  "purpose": "Define persisted run outputs as artifacts rather than transient runtime memory.",
+  "artifactTypes": [
+    "task.instance",
+    "agent.plan",
+    "agent.output",
+    "tool.result",
+    "spec.validation",
+    "final.deliverable",
+    "final.report",
+    "error.report"
+  ],
+  "qualityGates": [
+    "A completed run must have task.instance, at least one agent.output, and final.deliverable.",
+    "Final deliverable is the main result; final report is supplemental.",
+    "Artifacts must be addressable by runId, harnessId, and nodeId where applicable."
+  ]
+}

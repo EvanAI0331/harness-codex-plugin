@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ScriptAuthoringOutput",
+  "type": "object",
+  "required": ["summary", "skill", "script", "artifacts", "validation"],
+  "properties": {
+    "summary": { "type": "string", "minLength": 1 },
+    "skill": {
+      "type": "object",
+      "required": ["title", "fileName", "sourceText"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "fileName": { "type": "string", "minLength": 1 },
+        "sourceText": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "script": {
+      "type": "object",
+      "required": ["title", "fileName", "entrypoint", "sourceText"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "fileName": { "type": "string", "minLength": 1 },
+        "entrypoint": { "type": "string", "minLength": 1 },
+        "sourceText": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "artifacts": {
+      "type": "object",
+      "required": ["skillSourceTemplateId", "scriptSourceTemplateId"],
+      "properties": {
+        "skillSourceTemplateId": { "type": "string", "minLength": 1 },
+        "scriptSourceTemplateId": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "validation": {
+      "type": "object",
+      "required": ["includesSkill", "includesScript", "executable", "persistable"],
+      "properties": {
+        "includesSkill": { "const": true },
+        "includesScript": { "const": true },
+        "executable": { "const": true },
+        "persistable": { "const": true }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

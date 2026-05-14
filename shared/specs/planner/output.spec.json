@@ -1,0 +1,19 @@
+{
+  "id": "planner.output.v4",
+  "title": "Planner Output Spec",
+  "purpose": "Define the structured blueprint output emitted by the planner.",
+  "requiredFields": [
+    "summary",
+    "harness",
+    "agents",
+    "specs",
+    "capabilities",
+    "edges"
+  ],
+  "qualityGates": [
+    "Agents must have role-specific responsibilities and output obligations.",
+    "Specs must reference the actual agent roster.",
+    "Capabilities must obey policy boundaries.",
+    "The blueprint must support downstream SpecX contract generation without generic fallback fields."
+  ]
+}

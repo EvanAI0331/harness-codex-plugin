@@ -1,0 +1,10 @@
+{
+  "specFamily": "runtime",
+  "version": "v1",
+  "files": {
+    "role": "shared/specs/runtime/role.spec.json",
+    "execution": "shared/specs/runtime/execution.spec.json",
+    "output": "shared/specs/runtime/output.spec.json",
+    "agentRuntime": "shared/specs/runtime/agent-runtime.spec.json"
+  }
+}

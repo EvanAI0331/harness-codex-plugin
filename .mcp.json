@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "harness": {
+      "command": "python3",
+      "args": [
+        "./scripts/launch_harness_mcp.py"
+      ]
+    }
+  }
+}
