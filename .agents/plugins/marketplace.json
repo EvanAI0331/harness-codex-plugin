@@ -5,7 +5,7 @@
       "name": "harness-codex-plugin",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/BTCNAI/harness-codex-marketplace.git",
+        "url": "https://github.com/EvanAI0331/harness-codex-marketplace.git",
         "path": "./plugins/harness-codex-plugin",
         "ref": "v0.1.7"
       },

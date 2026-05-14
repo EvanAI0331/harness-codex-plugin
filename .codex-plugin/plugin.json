@@ -4,11 +4,11 @@
   "description": "Essential workflow framework runtime for building, running, and verifying custom Codex agent harnesses.",
   "license": "MIT",
   "author": {
-    "name": "BTCNAI",
-    "url": "https://github.com/BTCNAI"
+    "name": "EvanAI0331",
+    "url": "https://github.com/EvanAI0331"
   },
-  "homepage": "https://github.com/BTCNAI/harness-codex-plugin",
-  "repository": "https://github.com/BTCNAI/harness-codex-plugin",
+  "homepage": "https://github.com/EvanAI0331/harness-codex-plugin",
+  "repository": "https://github.com/EvanAI0331/harness-codex-plugin",
   "keywords": [
     "codex-plugin",
     "workflow-framework",
@@ -26,7 +26,7 @@
       "Read",
       "Write"
     ],
-    "websiteURL": "https://github.com/BTCNAI/harness-codex-plugin",
+    "websiteURL": "https://github.com/EvanAI0331/harness-codex-plugin",
     "defaultPrompt": [
       "Use Harness Workflow Builder to convert a custom workflow into a spec-bound harness.",
       "Use Harness Runtime Verifier to check role, execution, output specs and artifact evidence.",
