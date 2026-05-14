@@ -9,12 +9,13 @@ const BASE_URL = `http://127.0.0.1:${PORT}`;
 const WORKSPACE_TMP = path.join(process.cwd(), "tmp", "smoke");
 const DB_PATH = path.join(WORKSPACE_TMP, "harness.sqlite");
 const ARTIFACT_DIR = path.join(WORKSPACE_TMP, "artifacts");
+const SERVER_COMMAND = process.env.SMOKE_SERVER_COMMAND === "start" ? "start" : "dev";
 
 async function main(): Promise<void> {
   cleanupWorkspace();
   const server = spawn(
     "npm",
-    ["run", "dev", "--", "--hostname", "127.0.0.1", "--port", String(PORT)],
+    ["run", SERVER_COMMAND, "--", "--hostname", "127.0.0.1", "--port", String(PORT)],
     {
       cwd: process.cwd(),
       env: {

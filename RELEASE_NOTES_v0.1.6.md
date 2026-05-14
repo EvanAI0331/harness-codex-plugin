@@ -1,6 +1,6 @@
-# Harness Codex Plugin v0.1.5
+# Harness Codex Plugin v0.1.6
 
-Harness v0.1.5 packages Harness Studio as a Codex plugin and positions it as a workflow framework for custom Codex agent systems.
+Harness v0.1.6 packages Harness Studio as a Codex plugin and positions it as a workflow framework for custom Codex agent systems.
 
 ## Highlights
 
@@ -15,7 +15,7 @@ Harness v0.1.5 packages Harness Studio as a Codex plugin and positions it as a w
 ## Install
 
 ```bash
-codex plugin marketplace add https://github.com/BTCNAI/harness-codex-marketplace.git --ref v0.1.5
+codex plugin marketplace add https://github.com/BTCNAI/harness-codex-marketplace.git --ref v0.1.6
 ```
 
 ## Verification

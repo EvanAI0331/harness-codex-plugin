@@ -1,6 +1,6 @@
 {
   "name": "harness-codex-plugin",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Essential workflow framework runtime for building, running, and verifying custom Codex agent harnesses.",
   "license": "MIT",
   "author": {
